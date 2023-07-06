@@ -9,6 +9,10 @@
     <form action="/register" method="post">
       <h2>Register</h2>
       <div class="form-group">
+        <label for="name">Profile Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
       </div>
@@ -20,6 +24,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
       </div>
+      
       <button type="submit">Register</button>
     </form>
   </div>

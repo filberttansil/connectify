@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "Name is required!",
+            msg: "Profile name is required!",
           },
           notEmpty: {
-            msg: "Name is required!",
+            msg: "Profile name is required!",
           },
         },
       },
@@ -44,5 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Profile",
     }
   );
+  Profile.beforeCreate((profile) => {
+    profile.picture =
+      "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg";
+  });
   return Profile;
 };
