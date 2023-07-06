@@ -8,17 +8,20 @@
 <body>
   <header>
     <%- include('navbar') %>
+    <% console.log(profile) %>
   </header>
   <main>
-    <h2>User List</h2>
+    <h2>Profile List</h2>
     <ul class="user-list">
-      <li>
-        <img src="profile-pic1.jpg" alt="Profile Picture">
-        <div class="user-info">
-          <h3>User 1</h3>
-          <p>@user1</p>
-        </div>
-      </li>
+        <% profile.forEach(el => { %>
+            <li>
+                <img src="<%= el.picture %>" alt="Profile Picture">
+                <div class="user-info">
+                    <h3><%= el.name %></h3>
+                </div>
+                <button style="display: inline; margin: 5px; justify-content: right; background-color: rgb(255, 255, 255); border: none;"><a style="text-decoration: none;" href="/deleteProfile/<%=el.id%>">Remove User</a></button>
+                <% }) %>
+            </li>
     </ul>
   </main>
 </body>
