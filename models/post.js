@@ -12,6 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.Tag);
       Post.belongsTo(models.User);
     }
+    get likes() {
+      if (this.like === 1 || this.like === 0) {
+        return this.like + " " + "like";
+      } else {
+        return this.like + " " + "likes";
+      }
+    }
   }
   Post.init(
     {
