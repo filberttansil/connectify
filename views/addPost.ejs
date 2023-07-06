@@ -8,14 +8,10 @@
   </head>
   <body>
     <%- include('navbar') %>
-    <form>
+    <form method="post" action="/addPost">
       <div class="mb-3">
         <label class="form-label">Title: </label>
         <input name="title" type="text" class="form-control" >
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Caption: </label>
-        <input name="content" type="text" class="form-control" >
       </div>
       <div class="mb-3">
         <label class="form-label">Caption: </label>
@@ -27,18 +23,18 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Tag: </label>
-        <select class="form-select" >
+        <select class="form-select" name="TagId">
           <option disabled selected>--Select Tags--</option>
           <% tags.forEach(tag=>{ %>
           <option value="<%= tag.id %>"><%= tag.name %></option>
           <% }) %>
         </select>
         <br>
-        <a href="/addTagForm" class="btn btn-info">Add Tag</a>
+        <a href="/addTags" class="btn btn-info">Add Tag</a>
       </div>
       <div class="mb-3">
         <label class="form-label">User: </label>
-        <input name="userId" type="number" class="form-control" >
+        <input name="UserId" type="number" class="form-control" >
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

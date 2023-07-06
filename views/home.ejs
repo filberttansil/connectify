@@ -7,6 +7,10 @@
 </head>
 <body>
 <%- include('navbar') %>
+<form class="d-flex" method="get" action="/home">
+  <input class="form-control me-2" type="search" placeholder="Search profile .." name="searchKey">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 <br>
     <% posts.forEach(post=>{ %>
     <div class="post">
