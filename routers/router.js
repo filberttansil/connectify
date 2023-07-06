@@ -3,23 +3,21 @@ const router = express.Router();
 const Controller = require("../controllers/controller");
 const UserController = require("../controllers/UserController");
 
-
+router.get("/", UserController.redirectToLogin);
 router.get("/register", UserController.registerForm);
 router.post("/register", UserController.postRegisterForm);
 router.get("/login", UserController.loginForm);
 router.post("/login", UserController.postLogin);
 
-router.use(function (req, res, next){
-    console.log(req.session)
-    if(!req.session.userId){
-        const error = 'PLEASE LOGIN FIRST!' //kalau belum ada sesion kasi tau harus login 
-        res.redirect('/login?error=$(error') //balikin ke home 
-    }
-    else{
-        next()
-    }
-})
-
+router.use(function (req, res, next) {
+  console.log(req.session);
+  if (!req.session.userId) {
+    const error = "PLEASE LOGIN FIRST!"; //kalau belum ada sesion kasi tau harus login
+    res.redirect("/login?error=$(error"); //balikin ke home
+  } else {
+    next();
+  }
+});
 //home
 router.get("/home", Controller.renderHome);
 //render add post form
@@ -30,4 +28,6 @@ router.post("/addPost", Controller.handleAddPost);
 router.get("/addTags", Controller.renderTagsForm);
 //handle add Tag
 router.post("/addTags", Controller.handleAddTag);
+//render Profile
+router.get("/profile/:id", Controller.renderProfile);
 module.exports = router;

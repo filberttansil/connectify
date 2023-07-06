@@ -30,8 +30,8 @@ class Controller {
     // console.log(options.include);
     Post.findAll(options)
       .then((posts) => {
-        // res.render("home", { posts, formatPublished });
-        res.send(posts);
+        res.render("home", { posts, formatPublished });
+        // res.send(posts);
       })
       .catch((err) => {
         console.log(err);
@@ -83,6 +83,24 @@ class Controller {
           console.log(err);
           res.send(err);
         }
+      });
+  }
+  static renderProfile(req, res) {
+    const { id } = req.params;
+    Profile.findByPk(id, {
+      include: {
+        model: User,
+        include: Post,
+      },
+    })
+      .then((profile) => {
+        // res.send(profile);
+        // console.log(profile);
+        res.render("profile", { profile, formatPublished });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
       });
   }
 }
