@@ -8,7 +8,7 @@
 <body>
 <%- include('navbar') %>
 <form class="d-flex" method="get" action="/home">
-  <input class="form-control me-2" type="search" placeholder="Search profile .." name="searchKey">
+  <input class="form-control me-2" type="search" placeholder="Search posts by profile name .." name="searchKey">
   <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 <br>
@@ -16,7 +16,8 @@
     <div class="post">
       <div class="user-info">
         <img src="<%= post.User.Profile.picture %>" alt="profile Picture">
-        <h2><%= post.User.Profile.name %></h2>
+        <h2><a href="/profile/<%= post.User.Profile.id %>" style="color: inherit;
+          text-decoration: none;"><%= post.User.Profile.name %></a></h2>
       </div>
       <img src="<%= post.imageUrl %>" alt="Post Image">
       <div class="post-actions">

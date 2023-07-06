@@ -85,5 +85,23 @@ class Controller {
         }
       });
   }
+  static renderProfile(req, res) {
+    const { id } = req.params;
+    Profile.findByPk(id, {
+      include: {
+        model: User,
+        include: Post,
+      },
+    })
+      .then((profile) => {
+        // res.send(profile);
+        // console.log(profile);
+        res.render("profile", { profile, formatPublished });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
 }
 module.exports = Controller;

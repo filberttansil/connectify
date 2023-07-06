@@ -1,3 +1,4 @@
+
 const {User, Profile} = require('../models')
 const bcrypt = require('bcryptjs')
 const user = require('../models/user')
@@ -65,4 +66,4 @@ class UserController{
             }
 }
 
-module.exports = UserController
+module.exports = UserController;
