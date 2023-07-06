@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+  }
+  
+  header {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    color: #777;
+  }
+  
+  main {
+    margin-top: 80px; /* Adjust this value based on your header height */
+    padding: 20px;
+  }
+  
+  .profile {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    margin-left: 20px;
+  }
+  
+  .profile-info h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+    color: #777;
+  }
+  
+  .profile-bio h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .profile-bio p {
+    color: #777;
+    line-height: 1.5;
+  }
+  
+  .profile-posts h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .post {
+    margin-bottom: 20px;
+  }
+  
+  .post img {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+  
+  .post .caption {
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .post .time {
+    color: #777;
+    font-size: 12px;
+  }
+  
+  /* Responsive Styles */
+  
+  @media screen and (max-width: 768px) {
+    .profile-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .profile-avatar {
+      margin-bottom: 10px;
+    }
+  
+    .profile-info {
+      margin-left: 0;
+    }
+  
+    .post img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
