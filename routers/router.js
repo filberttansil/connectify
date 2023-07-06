@@ -3,7 +3,7 @@ const router = express.Router();
 const Controller = require("../controllers/controller");
 const UserController = require("../controllers/UserController");
 
-// router.get("/", UserController.redirectToLogin);
+router.get("/", Controller.redirectToLogin);
 router.get("/register", UserController.registerForm);
 router.post("/register", UserController.postRegisterForm);
 router.get("/login", UserController.loginForm);
@@ -49,5 +49,6 @@ router.get("/user/profile/:id", Controller.renderUserProfile);
 router.get("/profile/:id/edit", Controller.renderEditProfile);
 router.post("/profile/:id/edit", Controller.handleEditProfile);
 router.get("/logout", UserController.logout);
+router.get("/posts/:id/like", Controller.addLike);
 router.get("/deleteProfile/:id", UserController.deleteProfile);
 module.exports = router;

@@ -1,14 +1,21 @@
 [
     {
-        "username":"Filbert",
-        "email":"filbert@gmail.com",
-        "password":"12345",
-        "role":"Admin"
+        "username":"alferin",
+        "email":"alferin@gmail.com",
+        "password":"123",
+        "role":"Customer"
     },
     {
-        "username":"Alferin",
-        "email":"alferin@gmail.com",
-        "password":"12345",
+        "username":"ardy",
+        "email":"ardy@gmail.com",
+        "password":"123",
+        "role":"Customer"
+    },
+    {
+        "username":"filbert",
+        "email":"filbert@gmail.com",
+        "password":"123",
         "role":"Admin"
     }
+    
 ]

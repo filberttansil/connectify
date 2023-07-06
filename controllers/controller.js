@@ -4,6 +4,9 @@ const { Post, Profile, Tag, User } = require("../models/index");
 const formatPublished = require("../helpers/formatPublished");
 const profile = require("../models/profile");
 class Controller {
+  static redirectToLogin(req, res) {
+    res.redirect("/login");
+  }
   static renderHome(req, res) {
     const UserId = req.session.userId;
     let { searchKey } = req.query;
@@ -24,6 +27,7 @@ class Controller {
           where: condition,
         },
       },
+      order: [["like", "DESC"]],
     };
 
     Post.findAll(options)
@@ -45,8 +49,10 @@ class Controller {
       },
     })
       .then((profile) => {
-        res.render("profileById", { profile });
-        // res.send(profile);
+        profile === null
+          ? res.render("banned")
+          : res.render("profileById", { profile });
+        // console.log(profile);
       })
       .catch((err) => {
         console.log(err);
@@ -137,6 +143,17 @@ class Controller {
     Profile.update({ name, picture, bio }, { where: { id } })
       .then(() => {
         res.redirect(`/user/profile/${id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+  static addLike(req, res) {
+    const { id } = req.params;
+    Post.increment({ like: 10 }, { where: { id } })
+      .then(() => {
+        res.redirect("/home");
       })
       .catch((err) => {
         console.log(err);

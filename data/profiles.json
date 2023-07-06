@@ -1,14 +1,20 @@
 [
     {
     "name":"Filbert",
-    "picture":"https://static.wikia.nocookie.net/spongebob/images/b/b1/SB_The_Patrick_Star_Show.png/revision/latest?cb=20220724114040",
-    "bio":"Hello!",
-    "UserId":"1"
+    "picture":"https://i.pinimg.com/736x/5b/23/49/5b2349203fba5e6410831cc2401e56fa.jpg",
+    "bio":"Open PO jus Kode. WA:081823338",
+    "UserId":"3"
     },
     {
     "name":"Alferin",
-    "picture":"https://static.wikia.nocookie.net/spongebob/images/b/b1/SB_The_Patrick_Star_Show.png/revision/latest?cb=20220724114040",
-    "bio":"Hello!",
-    "UserId":"2"
+    "picture":"https://i.pinimg.com/736x/09/39/bb/0939bb1e1d13cc53440082f3e161d5f1.jpg",
+    "bio":"follow me on twitch: @chubbyalferin",
+    "UserId":"1"
+    },
+    {
+        "name":"iamardy",
+        "picture":"https://i.pinimg.com/736x/1d/5d/2d/1d5d2d9f11a33eb3fd3cbeeafe9d09a7.jpg",
+        "bio":"People come and go. Live your life.",
+        "UserId":"2"
     }
 ]

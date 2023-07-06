@@ -49,11 +49,11 @@
       </div>
       <img src="<%= post.imageUrl %>" alt="Post Image">
       <div class="post-actions">
-        <a href="#">Like<i class="far fa-heart"></i></a>
+        <a href="/posts/<%= post.id %>/like">Like<i class="far fa-heart"></i></a>
             <a href="#">Comment<i class="far fa-comment"></i></a>
       </div>
      
-      <p class="likes"><%= post.like %> likes</p>
+      <p class="likes"><%= post.likes %></p>
       <p class="caption"><strong><%= post.User.Profile.name %></strong> <%= post.content %></p>
       <p class="comments">View all 5 comments</p>
       <p class="time"><%= formatPublished(post.createdAt) %></p>

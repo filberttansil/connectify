@@ -1,10 +1,8 @@
 const { User, Profile } = require("../models");
 const bcrypt = require("bcryptjs");
 const user = require("../models/user");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-  
-    
 class UserController {
   static registerForm(req, res) {
     res.render("register.ejs");
@@ -19,26 +17,26 @@ class UserController {
       })
       .then(() => {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: 'ppconnectify@gmail.com',
-              pass: 'yrsebvwrfiicvcmy'
-            }
-          });
-          const mailOptions = {
-            from: 'ppconnectify@gmail.com',
-            to: `${email}`,
-            subject: 'Test Email',
-            text: 'Hello, this is a test email.'
-          };
-        
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
-          });
+          service: "gmail",
+          auth: {
+            user: "ppconnectify@gmail.com",
+            pass: "yrsebvwrfiicvcmy",
+          },
+        });
+        const mailOptions = {
+          from: "ppconnectify@gmail.com",
+          to: `${email}`,
+          subject: "Account created",
+          text: "Hello, Your account is created succesfully! ",
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        });
         res.redirect("/login");
       })
       .catch((err) => {
@@ -95,11 +93,11 @@ class UserController {
 
             res.redirect("/home");
           } else {
-            const error = "invalid username/password";
+            const error = "Invalid username/password";
             return res.redirect(`/login?error=${error}`);
           }
         } else {
-          const error = "invalid username/password";
+          const error = "Your account is not registered";
           return res.redirect(`/login?error=${error}`);
         }
       })
@@ -122,19 +120,17 @@ class UserController {
     });
   }
 
-  static deleteProfile(req, res){
-    const {id} = req.params
-    console.log(id,213)
+  static deleteProfile(req, res) {
+    const { id } = req.params;
+    console.log(id, 213);
     Profile.destroy({
-        where :{
-            id: +id
-        }
-    })
-    .then(()=>{
-        res.redirect("/admin")
-    })
+      where: {
+        id: +id,
+      },
+    }).then(() => {
+      res.redirect("/admin");
+    });
   }
 }
-
 
 module.exports = UserController;
