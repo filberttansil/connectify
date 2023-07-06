@@ -1,13 +1,13 @@
-const express = require('express')
-const app = express()
-const port = 3000
-const {Controller} = require('./controllers/controller')
+const express = require("express");
+const app = express();
+const port = 3000;
 
-app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: true}))
+const router = require("./routers/router");
+app.use(express.static("./public"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(router);
 
-app.get('/', Controller.testing)
-
-app.listen(port , ()=>{
-    console.log('sudah berhasil baca port')
-})
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
