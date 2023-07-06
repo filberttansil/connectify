@@ -28,6 +28,33 @@ class UserController {
     // res.send('halo')
   }
 
+  //   static postLogin(req, res) {
+  //     console.log(req.body);
+  //     const { username, password } = req.body;
+  //     User.findOne({ where: { username } })
+  //       .then((user) => {
+  //         // console.log(user)
+  //         if (user) {
+  //           const isValidPassword = bcrypt.compareSync(password, user.password);
+
+  //           if (isValidPassword) {
+  //             // console.log(req.session)
+  //             req.session.userId = user.id;
+  //             req.session.role = user.role;
+
+  //             res.redirect("/home");
+  //           } else {
+  //             const error = "invalid username/password";
+  //             return res.redirect(`/login?error=${error}`);
+  //           }
+  //         } else {
+  //           const error = "invalid username/password";
+  //           return res.redirect(`/login?error=${error}`);
+  //         }
+  //       })
+  //       .catch((err) => res.send(err));
+  //   }
+
   static postLogin(req, res) {
     console.log(req.body);
     const { username, password } = req.body;
@@ -59,6 +86,15 @@ class UserController {
     Profile.findAll().then((profile) => {
       console.log(profile, 12345);
       res.render("admin", { profile });
+    });
+  }
+
+  static logout(req, res) {
+    req.session.destroy((err) => {
+      if (err) console.log(err);
+      else {
+        res.redirect("/login");
+      }
     });
   }
 }
