@@ -47,4 +47,5 @@ router.post("/addTags", Controller.handleAddTag);
 //render Profile
 router.get("/profile/:id", Controller.renderProfile);
 router.get("/logout", UserController.logout);
+router.get("/deleteProfile/:id", UserController.deleteProfile);
 module.exports = router;

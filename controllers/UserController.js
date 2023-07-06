@@ -97,6 +97,20 @@ class UserController {
       }
     });
   }
+
+  static deleteProfile(req, res){
+    const {id} = req.params
+    console.log(id,213)
+    Profile.destroy({
+        where :{
+            id: +id
+        }
+    })
+    .then(()=>{
+        res.redirect("/admin")
+    })
+  }
 }
+
 
 module.exports = UserController;
