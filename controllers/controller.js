@@ -2,12 +2,12 @@ const { Op } = require("sequelize");
 const { Post, Profile, Tag, User } = require("../models/index");
 //helper
 const formatPublished = require("../helpers/formatPublished");
+const profile = require("../models/profile");
 class Controller {
   static renderHome(req, res) {
+    const UserId = req.session.userId;
     let { searchKey } = req.query;
-    // searchKey ? (searchKey = searchKey) : "";
     let condition = {};
-    // console.log(searchKey);
     if (searchKey) {
       condition.name = {
         [Op.iLike]: `%${searchKey}%`,
@@ -24,14 +24,29 @@ class Controller {
           where: condition,
         },
       },
-      //   where: {},
     };
 
-    // console.log(options.include);
     Post.findAll(options)
       .then((posts) => {
-        res.render("home", { posts, formatPublished });
-        // res.send(posts);
+        res.render("home", { posts, formatPublished, UserId });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+  static renderUserProfile(req, res) {
+    const UserId = req.session.userId;
+    Profile.findOne({
+      where: { UserId: UserId },
+      include: {
+        model: User,
+        include: Post,
+      },
+    })
+      .then((profile) => {
+        res.render("profileById", { profile });
+        // res.send(profile);
       })
       .catch((err) => {
         console.log(err);
@@ -97,6 +112,31 @@ class Controller {
         // res.send(profile);
         // console.log(profile);
         res.render("profile", { profile, formatPublished });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+  static renderEditProfile(req, res) {
+    const { id } = req.params;
+    Profile.findByPk(id)
+      .then((profile) => {
+        // res.send(profile);
+        // console.log(profile);
+        res.render("editProfile", { profile });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+  static handleEditProfile(req, res) {
+    const { id } = req.params;
+    const { name, picture, bio } = req.body;
+    Profile.update({ name, picture, bio }, { where: { id } })
+      .then(() => {
+        res.redirect(`/user/profile/${id}`);
       })
       .catch((err) => {
         console.log(err);

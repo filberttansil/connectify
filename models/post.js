@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      like: DataTypes.INTEGER,
       TagId: {
         type: DataTypes.INTEGER,
         references: {
@@ -68,5 +69,8 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Post",
     }
   );
+  Post.beforeCreate((post) => {
+    post.like = 0;
+  });
   return Post;
 };
