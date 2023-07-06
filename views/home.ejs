@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Social Media</title>
+  <link rel="stylesheet" type="text/css" href="sosmed.css">
+</head>
+<body>
+<%- include('navbar') %>
+<br>
+    <% posts.forEach(post=>{ %>
+    <div class="post">
+      <div class="user-info">
+        <img src="<%= post.User.Profile.picture %>" alt="profile Picture">
+        <h2><%= post.User.Profile.name %></h2>
+      </div>
+      <img src="<%= post.imageUrl %>" alt="Post Image">
+      <div class="post-actions">
+        <a href="#"><i class="far fa-heart"></i></a>
+        <a href="#"><i class="far fa-comment"></i></a>
+        <a href="#"><i class="far fa-paper-plane"></i></a>
+      </div>
+      <p class="likes">100 likes</p>
+      <p class="caption"><strong><%= post.User.Profile.name %></strong> <%= post.content %></p>
+      <p class="comments">View all 5 comments</p>
+      <p class="time"><%= formatPublished(post.createdAt) %></p>
+    </div>
+    </div>
+    <% }) %>
+</body>
+</html>
