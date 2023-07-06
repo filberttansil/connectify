@@ -30,8 +30,8 @@ class Controller {
     // console.log(options.include);
     Post.findAll(options)
       .then((posts) => {
-        // res.render("home", { posts, formatPublished });
-        res.send(posts);
+        res.render("home", { posts, formatPublished });
+        // res.send(posts);
       })
       .catch((err) => {
         console.log(err);

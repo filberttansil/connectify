@@ -20,6 +20,20 @@ router.use(function (req, res, next){
     }
 })
 
+const isAdmin = function (req, res, next){
+    console.log(req.session)
+    if(req.session.role !== 'Admin'){
+        const error = 'you have no access please log in as an Admin'
+        
+        res.redirect(`/login?error=${error}`)
+    }
+    else{
+        next()
+    }
+}
+
+router.get("/admin", isAdmin ,UserController.admin)
+
 //home
 router.get("/home", Controller.renderHome);
 //render add post form

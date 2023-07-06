@@ -1,5 +1,6 @@
-const {User} = require('../models')
+const {User, Profile} = require('../models')
 const bcrypt = require('bcryptjs')
+const user = require('../models/user')
 
 class UserController{
     
@@ -9,7 +10,7 @@ class UserController{
 
     static postRegisterForm(req,res){
         const {username, email, password} = req.body 
-        User.create({username, email, password ,role:'costumer'})
+        User.create({username, email, password ,role:'Costumer'})
         .then(newUser =>{
             res.redirect('/login')
         })
@@ -36,8 +37,9 @@ class UserController{
                         const isValidPassword = bcrypt.compareSync(password, user.password)
         
                         if(isValidPassword){
-                            console.log(req.session)
+                            // console.log(req.session)
                             req.session.userId = user.id
+                            req.session.role = user.role
                              
                             res.redirect('/home')
                         } else {
@@ -53,7 +55,14 @@ class UserController{
                 .catch(err => res.send(err))
             }
 
+            static admin(req,res){
 
+                Profile.findAll()
+                .then(profile => {
+                    console.log(profile,12345)
+                    res.render('admin', {profile}) 
+                })
+            }
 }
 
 module.exports = UserController

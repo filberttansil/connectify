@@ -3,12 +3,12 @@
         "username":"Filbert",
         "email":"filbert@gmail.com",
         "password":"12345",
-        "role":"user"
+        "role":"Admin"
     },
     {
         "username":"Alferin",
         "email":"alferin@gmail.com",
         "password":"12345",
-        "role":"user"
+        "role":"Admin"
     }
 ]
