@@ -9,30 +9,28 @@ router.post("/register", UserController.postRegisterForm);
 router.get("/login", UserController.loginForm);
 router.post("/login", UserController.postLogin);
 
-router.use(function (req, res, next){
-    console.log(req.session)
-    if(!req.session.userId){
-        const error = 'PLEASE LOGIN FIRST!' //kalau belum ada sesion kasi tau harus login 
-        res.redirect('/login?error=$(error') //balikin ke home 
-    }
-    else{
-        next()
-    }
-})
+router.use(function (req, res, next) {
+  console.log(req.session);
+  if (!req.session.userId) {
+    const error = "PLEASE LOGIN FIRST!"; //kalau belum ada sesion kasi tau harus login
+    res.redirect("/login?error=$(error"); //balikin ke home
+  } else {
+    next();
+  }
+});
 
-const isAdmin = function (req, res, next){
-    console.log(req.session)
-    if(req.session.role !== 'Admin'){
-        const error = 'you have no access please log in as an Admin'
-        
-        res.redirect(`/login?error=${error}`)
-    }
-    else{
-        next()
-    }
-}
+const isAdmin = function (req, res, next) {
+  console.log(req.session);
+  if (req.session.role !== "Admin") {
+    const error = "you have no access please log in as an Admin";
 
-router.get("/admin", isAdmin ,UserController.admin)
+    res.redirect(`/login?error=${error}`);
+  } else {
+    next();
+  }
+};
+
+router.get("/admin", isAdmin, UserController.admin);
 
 //home
 router.get("/home", Controller.renderHome);
@@ -46,6 +44,10 @@ router.get("/addTags", Controller.renderTagsForm);
 router.post("/addTags", Controller.handleAddTag);
 //render Profile
 router.get("/profile/:id", Controller.renderProfile);
+router.get("/user/profile/:id", Controller.renderUserProfile);
+//edit Profile
+router.get("/profile/:id/edit", Controller.renderEditProfile);
+router.post("/profile/:id/edit", Controller.handleEditProfile);
 router.get("/logout", UserController.logout);
 router.get("/deleteProfile/:id", UserController.deleteProfile);
 module.exports = router;

@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Post);
       User.hasOne(models.Profile);
     }
+    showStatus() {
+      if (this.role === "Admin") {
+        return "You're a Admin";
+      } else {
+        return "Welcome to Connectify";
+      }
+    }
   }
   User.init(
     {
