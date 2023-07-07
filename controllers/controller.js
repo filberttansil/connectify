@@ -51,7 +51,7 @@ class Controller {
       .then((profile) => {
         profile === null
           ? res.render("banned")
-          : res.render("profileById", { profile });
+          : res.render("profileById", { profile, formatPublished });
         // console.log(profile);
       })
       .catch((err) => {
@@ -69,7 +69,8 @@ class Controller {
       });
   }
   static handleAddPost(req, res) {
-    const { title, content, imageUrl, TagId, UserId } = req.body;
+    const UserId = req.session.userId;
+    const { title, content, imageUrl, TagId } = req.body;
 
     Post.create({ title, content, imageUrl, TagId: TagId, UserId: UserId })
       .then(() => {
@@ -152,6 +153,17 @@ class Controller {
   static addLike(req, res) {
     const { id } = req.params;
     Post.increment({ like: 10 }, { where: { id } })
+      .then(() => {
+        res.redirect("/home");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  }
+  static deletePost(req, res) {
+    const { id } = req.params;
+    Post.destroy({ where: { id: id } })
       .then(() => {
         res.redirect("/home");
       })

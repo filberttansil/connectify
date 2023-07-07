@@ -31,7 +31,7 @@ const isAdmin = function (req, res, next) {
 };
 
 router.get("/admin", isAdmin, UserController.admin);
-
+router.get("/admin/post", isAdmin, UserController.adminPosts);
 //home
 router.get("/home", Controller.renderHome);
 //render add post form
@@ -50,5 +50,6 @@ router.get("/profile/:id/edit", Controller.renderEditProfile);
 router.post("/profile/:id/edit", Controller.handleEditProfile);
 router.get("/logout", UserController.logout);
 router.get("/posts/:id/like", Controller.addLike);
+router.get("/posts/:id/delete", Controller.deletePost);
 router.get("/deleteProfile/:id", UserController.deleteProfile);
 module.exports = router;
