@@ -1,7 +1,8 @@
-const { User, Profile } = require("../models");
+const { User, Profile, Post } = require("../models");
 const bcrypt = require("bcryptjs");
 const user = require("../models/user");
 const nodemailer = require("nodemailer");
+const { Op } = require("sequelize");
 
 class UserController {
   static registerForm(req, res) {
@@ -109,6 +110,25 @@ class UserController {
       console.log(profile, 12345);
       res.render("admin", { profile });
     });
+  }
+  static adminPosts(req, res) {
+    const { name } = req.query;
+    let obj = {};
+    if (name) {
+      obj = {
+        where: {
+          title: { [Op.iLike]: `%${name}%` },
+        },
+      };
+    }
+    Post.findAll(obj)
+      .then((posts) => {
+        let number = 1;
+        res.render("adminPosts", { posts, number });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   }
 
   static logout(req, res) {

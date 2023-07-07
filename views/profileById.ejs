@@ -70,15 +70,14 @@
           <img src="<%= post.imageUrl %>" alt="Post Image" class="img-fluid">
         </div>
         <div class="col-md-6">
-          <div class="post-actions">
-            <a href="#">❤️<i class="far fa-heart"></i></a>
-            <a href="#">❤️<i class="far fa-comment"></i></a>
-            <a href="#">❤️<i class="far fa-paper-plane"></i></a>
+          <div class="post-actions">    
+            
           </div>
-          <p class="likes">100 likes</p>
+          <p class="likes"><%= post.likes %></p>
           <p class="caption"><strong><%= profile.name %></strong> <%= post.content %></p>
           <p class="comments">View all 5 comments</p>
           <p class="time"><%= formatPublished(post.createdAt) %></p>
+          <a href="/posts/<%= post.id %>/delete">Delete<i class="far fa-comment"></i></a>
         </div>
       </div>
     <% }) %>
